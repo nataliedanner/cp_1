@@ -53,3 +53,22 @@ function hideTooltip(commentsInput) {
     tooltip.style.display = "none";
 }
 
+// Prevent submission if fields are empty
+
+document.querySelector(".submission").addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!name || !email|| !comments) {
+        alert("All fields required.");
+        return;
+    }
+});
+
+// Append valid feedback entries
+
+let feedbackDisplay = document.getElementById("feedback-display")
+
+document.querySelector(".submission").addEventListener("click", (e) => {
+    const entry = document.createElement("div");
+    entry.textContent = `${name} ${email} ${comments}`;
+    feedbackDisplay.appendChild(entry);
+})
