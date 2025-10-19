@@ -57,11 +57,19 @@ function hideTooltip(commentsInput) {
 
 document.querySelector(".submission").addEventListener("click", (e) => {
     e.preventDefault();
+    let name = nameInput.textContent;
+    let email = emailInput.textContent;
+    let comments = commentsInput.textContent;
     if (!name || !email|| !comments) {
         alert("All fields required.");
-        return;
+        e.stopPropagation();
     }
 });
+
+document.querySelector(".submission").addEventListener("click", () => {
+    alert("Form submitted!")
+})
+
 
 // Append valid feedback entries
 
@@ -69,6 +77,7 @@ let feedbackDisplay = document.getElementById("feedback-display")
 
 document.querySelector(".submission").addEventListener("click", (e) => {
     const entry = document.createElement("div");
-    entry.textContent = `${name} ${email} ${comments}`;
+    entry.textContent = `${name} (${email}), ${comments}`;
     feedbackDisplay.appendChild(entry);
+    e.stopPropagation();
 })
